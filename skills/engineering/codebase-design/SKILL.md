@@ -1,13 +1,13 @@
 ---
 name: codebase-design
-description: Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabulary.
+description: ディープモジュールを設計するための共通語彙。モジュールのインターフェース設計・改善、深掘り機会の発見、継ぎ目（seam）の位置決定、テスト容易性やAIナビゲーション性の向上、または他のスキルがディープモジュールの語彙を必要とするときに使用する。
 ---
 
-# Codebase Design
+# コードベース設計
 
 Design **deep modules**: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface. Use this language and these principles wherever code is being designed or restructured. The aim is leverage for callers, locality for maintainers, and testability for everyone.
 
-## Glossary
+## 用語集
 
 Use these terms exactly: don't substitute "component," "service," "API," or "boundary." Consistent language is the whole point.
 
@@ -27,7 +27,7 @@ Use these terms exactly: don't substitute "component," "service," "API," or "bou
 
 **Locality**: what maintainers get from depth. Change, bugs, knowledge, and verification concentrate in one place rather than spreading across callers. Fix once, fixed everywhere.
 
-## Deep vs shallow
+## 深い vs 浅い
 
 **Deep module** = small interface + lots of implementation:
 
@@ -57,14 +57,14 @@ When designing an interface, ask:
 - Can I simplify the parameters?
 - Can I hide more complexity inside?
 
-## Principles
+## 原則
 
 - **Depth is a property of the interface, not the implementation.** A deep module can be internally composed of small, mockable, swappable parts; they just aren't part of the interface. A module can have **internal seams** (private to its implementation, used by its own tests) as well as the **external seam** at its interface.
 - **The deletion test.** Imagine deleting the module. If complexity vanishes, it was a pass-through. If complexity reappears across N callers, it was earning its keep.
 - **The interface is the test surface.** Callers and tests cross the same seam. If you want to test *past* the interface, the module is probably the wrong shape.
 - **One adapter means a hypothetical seam. Two adapters means a real one.** Don't introduce a seam unless something actually varies across it.
 
-## Designing for testability
+## テスト容易性のための設計
 
 Good interfaces make testing natural:
 
@@ -94,7 +94,7 @@ Good interfaces make testing natural:
 
 3. **Small surface area.** Fewer methods = fewer tests needed. Fewer params = simpler test setup.
 
-## Relationships
+## 関係
 
 - A **Module** has exactly one **Interface** (the surface it presents to callers and tests).
 - **Depth** is a property of a **Module**, measured against its **Interface**.
@@ -102,13 +102,13 @@ Good interfaces make testing natural:
 - An **Adapter** sits at a **Seam** and satisfies the **Interface**.
 - **Depth** produces **Leverage** for callers and **Locality** for maintainers.
 
-## Rejected framings
+## 採用しなかった捉え方
 
 - **Depth as ratio of implementation-lines to interface-lines** (Ousterhout): rewards padding the implementation. We use depth-as-leverage instead.
 - **"Interface" as the TypeScript `interface` keyword or a class's public methods**: too narrow: interface here includes every fact a caller must know.
 - **"Boundary"**: overloaded with DDD's bounded context. Say **seam** or **interface**.
 
-## Going deeper
+## さらに深く
 
 - **Deepening a cluster given its dependencies**, see [DEEPENING.md](DEEPENING.md): dependency categories, seam discipline, and replace-don't-layer testing.
 - **Exploring alternative interfaces**, see [DESIGN-IT-TWICE.md](DESIGN-IT-TWICE.md): spin up parallel sub-agents to design the interface several radically different ways, then compare on depth, locality, and seam placement.

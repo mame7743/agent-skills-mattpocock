@@ -1,13 +1,13 @@
 ---
 name: domain-modeling
-description: Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a GLOSSARY.md, or recording or editing an ADR.
+description: プロジェクトのドメインモデルを構築・研磨する。コードベースの用語を議論するとき、GLOSSARY.md を書く/編集するとき、ADR を記録/編集するときに使用する。
 ---
 
-# Domain Modeling
+# ドメインモデリング
 
 Actively build and sharpen the project's domain model as you design. This is the *active* discipline: challenging terms, inventing edge-case scenarios, and writing the glossary and decisions down the moment they crystallise. (Merely *reading* `GLOSSARY.md` for vocabulary is not this skill: that's a one-line habit any skill can do. This skill is for when you're changing the model, not just consuming it.)
 
-## File structure
+## ファイル構成
 
 Most repos have a single context:
 
@@ -39,31 +39,31 @@ If a `GLOSSARY-MAP.md` exists at the root, the repo has multiple contexts. The m
 
 Create files lazily: only when you have something to write. If no `GLOSSARY.md` exists, create one when the first term is resolved. If no `docs/adr/` exists, create it when the first ADR is needed.
 
-## During the session
+## セッション中に
 
-### Challenge against the glossary
+### 用語集に照らして問い直す
 
 When the user uses a term that conflicts with the existing language in `GLOSSARY.md`, call it out immediately. "Your glossary defines 'cancellation' as X, but you seem to mean Y. Which is it?"
 
-### Sharpen fuzzy language
+### 曖昧な言葉を研ぐ
 
 When the user uses vague or overloaded terms, propose a precise canonical term. "You're saying 'account': do you mean the Customer or the User? Those are different things."
 
-### Discuss concrete scenarios
+### 具体的なシナリオで議論する
 
 When domain relationships are being discussed, stress-test them with specific scenarios. Invent scenarios that probe edge cases and force the user to be precise about the boundaries between concepts.
 
-### Cross-reference with code
+### コードと突き合わせる
 
 When the user states how something works, check whether the code agrees. If you find a contradiction, surface it: "Your code cancels entire Orders, but you just said partial cancellation is possible. Which is right?"
 
-### Update GLOSSARY.md inline
+### GLOSSARY.md を随時更新する
 
 When a term is resolved, update `GLOSSARY.md` right there. Don't batch these up: capture them as they happen. Use the format in [GLOSSARY-FORMAT.md](./GLOSSARY-FORMAT.md).
 
 `GLOSSARY.md` should be totally devoid of implementation details. Do not treat `GLOSSARY.md` as a spec, a scratch pad, or a repository for implementation decisions. It is a glossary and nothing else.
 
-### Offer ADRs sparingly
+### ADR は控えめに提案する
 
 Only offer to create an ADR when all three are true:
 
